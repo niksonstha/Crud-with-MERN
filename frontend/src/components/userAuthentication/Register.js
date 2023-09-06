@@ -6,7 +6,7 @@ import {
   Heading,
   Input,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -17,6 +17,13 @@ function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const auth = localStorage.getItem("user");
+    if (auth) {
+      navigate("/home");
+    }
+  });
 
   const register = () => {
     const userData = { fName, lName, email, password };
@@ -137,7 +144,7 @@ function Register() {
             Sign Up
           </Button>
           <Box mt={5} color="blue">
-            <NavLink to="/login">Create new account</NavLink>
+            <NavLink to="/login">Already have account</NavLink>
           </Box>
         </Box>
         {/* registration form ends */}

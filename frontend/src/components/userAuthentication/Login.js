@@ -10,7 +10,7 @@ import {
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -109,6 +109,9 @@ function Login() {
           >
             Login
           </Button>
+          <Box mt={5} color="blue">
+            <NavLink to="/">Create new account</NavLink>
+          </Box>
         </Box>
         {/* login form ends */}
       </Box>

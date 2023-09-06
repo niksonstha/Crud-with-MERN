@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 require("./database/config");
 const User = require("./database/User");
-const Todo = require("./database/TodoList");
+const Product = require("./database/Product");
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -30,21 +30,21 @@ app.post("/login", async (req, res) => {
   }
 });
 
-app.post("/insert-todoItems", async (req, res) => {
-  let todo = new Todo(req.body);
-  let result = await todo.save();
+app.post("/insert-product", async (req, res) => {
+  let product = new Product(req.body);
+  let result = await product.save();
   result = result.toObject();
 
   res.send(result);
 });
 
-app.get("/todolist/:id", async (req, res) => {
-  let todos = await Todo.find({ userID: req.params.id });
+app.get("/productList/:id", async (req, res) => {
+  let result = await Product.find({ userID: req.params.id });
 
-  if (todos.length < 0) {
+  if (result.length < 0) {
     res.send("no products");
   } else {
-    res.send(todos);
+    res.send(result);
   }
 });
 
