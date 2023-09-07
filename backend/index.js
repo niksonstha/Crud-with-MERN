@@ -48,4 +48,10 @@ app.get("/productList/:id", async (req, res) => {
   }
 });
 
+app.delete("/delete-product/:id", async (req, res) => {
+  let result = await Product.deleteOne({ _id: req.params.id });
+
+  res.send(result);
+});
+
 app.listen(5000);
