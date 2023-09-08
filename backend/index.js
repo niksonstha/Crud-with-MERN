@@ -54,4 +54,14 @@ app.delete("/delete-product/:id", async (req, res) => {
   res.send(result);
 });
 
+app.put("/update-product/:id", async (req, res) => {
+  const result = await Product.updateOne(
+    { _id: req.params.id },
+    {
+      $set: req.body,
+    }
+  );
+  res.send(result);
+});
+
 app.listen(5000);
